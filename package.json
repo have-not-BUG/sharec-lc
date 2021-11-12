@@ -1,0 +1,27 @@
+{
+  "name": "sharec-lc",
+  "version": "1.0.0",
+  "description": "聚合eslint、commitlint、babel、husky、lint-staged等npm及相关配置文件，节约项目初始化时间及可便捷批量修改相关配置。",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/have-not-BUG/sharec-lc.git"
+  },
+  "scripts": {
+    "postinstall": "sharec",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sharec"
+  ],
+  "author": "have-not-BUG",
+  "bugs": {
+    "url": "https://github.com/have-not-BUG/sharec-lc/issues"
+  },
+  "homepage": "https://github.com/have-not-BUG/sharec-lc#readme",
+  "license": "ISC",
+  "dependencies": {
+    "sharec": "~2.10.7",
+    "standard-version": "~9.3.2"
+  }
+}

@@ -1,0 +1,59 @@
+#! /usr/local/bin/node
+const fs = require('fs');
+
+console.log('process.argv',process.argv)
+try {
+  // 有文件什么都不做,没有文件则打开网页
+  const data = fs.readFileSync(`${__dirname}/noopen.json`, 'utf8');
+  console.log('读取的数据为:', data);
+  console.log('`${__dirname}/noopen.json`', `${__dirname}/noopen.json`);
+} catch (err) {
+  if (err && err.code === 'ENOENT') {
+    const childProcess = require('child_process');
+    const execSync = childProcess.execSync;
+    const path = require('path');
+    try{
+    const gitBranchName = execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+    const projectName = path.basename(path.resolve(process.cwd()));
+    const   platformAndCmdTypeObj={
+      win32:'start',
+      linux:'xdg-open',
+      darwin:'open',
+    }
+      let cmdType=platformAndCmdTypeObj[process.platform];
+    //
+    //   if (process.platform === 'win32') {
+    //   cmdType = 'start';
+    // } else if (process.platform === 'linux') {
+    //   cmdType = 'xdg-open';
+    // } else if (process.platform === 'darwin') {
+    //   cmdType = 'open';
+    // }
+
+    console.log(`即将打开git网页,测试环境jenkins及${projectName}网页`);
+      // todo 改成可配置，而不是写死
+      //  const urlsConfig ={
+      //   "open_now_url":{
+      //     is_open:true,
+      //     urls:[],
+      //   },
+      //   "open_later_url_info":{
+      //     is_open:true,
+      //     urls:[],
+      //     delay_time:0,
+      //   }
+      // }
+    childProcess.exec(`${cmdType} http://test.${projectName}.test.com/`);
+    childProcess.exec(`${cmdType}  http://frontend.test.com/${projectName}-dev/`);
+    setTimeout(() => {
+      childProcess.exec(`${cmdType}  https://h5.test.com/open.html?gitBranchName=${encodeURIComponent(gitBranchName)}"&projectName="${encodeURIComponent(projectName)}"&delay=1000"`);
+    }, 100);
+
+   }catch(err){
+      console.log('无git文件');
+    }
+
+  }else {
+    console.log('读取文件错误', err);
+  }
+}
