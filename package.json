@@ -7,7 +7,7 @@
     "url": "git+https://github.com/have-not-BUG/sharec-lc.git"
   },
   "scripts": {
-    "postinstall": "sharec",
+    "postinstall": "sharec install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "standard-version"
   },
