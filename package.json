@@ -1,6 +1,6 @@
 {
   "name": "sharec-lc",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "聚合eslint、commitlint、babel、husky、lint-staged等npm及相关配置文件，节约项目初始化时间及可便捷批量修改相关配置。",
   "repository": {
     "type": "git",
